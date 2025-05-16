@@ -3,9 +3,10 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+//route handler 
 /*
 app.get("/", (req, res) => {
-  res.send("Hello from Hitesh and his tea!");
+  res.send("Hello from Vaibhav!");
 });
 
 app.get("/ice-tea", (req, res) => {
@@ -13,11 +14,12 @@ app.get("/ice-tea", (req, res) => {
 });
 
 app.get("/twitter", (req, res) => {
-  res.send("hiteshdotcom");
+  res.send("vaibhav.com");
 });
 */
 
-app.use(express.json());
+app.use(express.json()); 
+//middleware to parse incoming JSON string to JS object -- necessary
 
 let teaData = [];
 let nextId = 1;
@@ -25,8 +27,8 @@ let nextId = 1;
 // add a new tea
 app.post("/teas", (req, res) => {
   console.log('post')
-  const { name, price } = req.body;
-  const newTea = {
+  const { name, price } = req.body; //destructuring object data
+  const newTea = { 
     id: nextId++,
     name,
     price,
@@ -79,3 +81,5 @@ app.delete("/teas/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}/`);
 });
+
+//collection of all requests mapped with routes and response becomes an API
